@@ -4,35 +4,47 @@
 Public Class frmCopyFile
     Dim rndNum As Integer = 0
     Dim dosyaUzantisi As String = String.Empty
+    Dim toplamDosyaSayisi As Integer = 0
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles Me.Load
         Dim files() As String = IO.Directory.GetFiles(".\EXEnew\")  'Dosyaların adları alınır
         Dim random As New Random
         rndNum = random.Next(1000, 9999)
+        Try
+            For Each file As String In files
+                file = dosyaAdiBul(file) & "." & dosyaUzantisi
+                If IO.File.Exists(file) Then
+                    prgGuncelle(file, rndNum)
+                Else
+                    My.Computer.FileSystem.CopyFile(".\EXEnew\" & file, Application.StartupPath & "\" & file, overwrite:=True)
+                    txtNewFiles.Text += "Yeni Dosya Eklendi: " & file & vbCrLf
+                End If
+                toplamDosyaSayisi += 1
+            Next
+            lblResult.Text &= "İşlem Başarılı"
+            lblNewFiles.Text &= toplamDosyaSayisi
+        Catch ex As Exception
+            MessageBox.Show(ex.Message, "Hata")
+        End Try
 
-        For Each file As String In files
-            file = dosyaAdiBul(file) & "." & dosyaUzantisi
-            If IO.File.Exists(file) Then
-                prgGuncelle(file, rndNum)
-            Else
-                My.Computer.FileSystem.CopyFile(".\EXEnew\" & file, Application.StartupPath & "\" & file, overwrite:=True)
-                txtNewFiles.Text &= ChrW(&H2714) & "Yeni Dosya Eklendi: " & file & vbCrLf
-            End If
-        Next
 
-        lblResult.Text = "İşlem Başarılı"
+
     End Sub
 
     Sub prgGuncelle(strPrgAdi, rnd)
-        Dim exeOldFileName, currentFileName As String
+        Try
+            Dim exeOldFileName, currentFileName As String
 
-        exeOldFileName = dosyaAdiBul(strPrgAdi) & "_" & gunHesapla() & "_" & rnd.ToString & "." & dosyaUzantisi
-        My.Computer.FileSystem.RenameFile(strPrgAdi, exeOldFileName)
-        My.Computer.FileSystem.MoveFile(Application.StartupPath & "\" & exeOldFileName, ".\EXEold\" & exeOldFileName)
-        currentFileName = Application.StartupPath & "\" & strPrgAdi
-        My.Computer.FileSystem.CopyFile(".\EXEnew\" & strPrgAdi, currentFileName, overwrite:=True)
+            exeOldFileName = dosyaAdiBul(strPrgAdi) & "_" & gunHesapla() & "_" & rnd.ToString & "." & dosyaUzantisi
+            My.Computer.FileSystem.RenameFile(strPrgAdi, exeOldFileName)
+            My.Computer.FileSystem.MoveFile(Application.StartupPath & "\" & exeOldFileName, ".\EXEold\" & exeOldFileName)
+            currentFileName = Application.StartupPath & "\" & strPrgAdi
+            My.Computer.FileSystem.CopyFile(".\EXEnew\" & strPrgAdi, currentFileName, overwrite:=True)
 
-        txtNewFiles.Text += ChrW(&H2713) & "Eski Dosya Çıkarıldı: " & exeOldFileName & vbCrLf
+            txtOldFiles.Text += "Eski Dosya Çıkarıldı: " & exeOldFileName & vbCrLf
+        Catch ex As Exception
+            MessageBox.Show(ex.Message, "Hata")
+        End Try
     End Sub
 
     Function dosyaAdiBul(dosyaAdi As String) As String
@@ -55,4 +67,7 @@ Public Class frmCopyFile
         Return gun
     End Function
 
+    Private Sub btnExit_Click(sender As Object, e As EventArgs) Handles btnExit.Click
+        Close()
+    End Sub
 End Class
