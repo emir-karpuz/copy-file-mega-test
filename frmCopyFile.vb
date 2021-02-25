@@ -3,10 +3,12 @@
     Dim dosyaUzantisi As String = String.Empty
     Dim EXEnewDosyaSayisi As Integer = 0
 
+
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles Me.Load
         Dim files() As String = IO.Directory.GetFiles(".\EXEnew\")  'Dosyaların adları alınır
         Dim random As New Random
         rndNum = random.Next(1000, 9999)
+        Dim EXEnewDosyaIndex As Integer = 1
         Try
             For Each file As String In files
                 file = dosyaAdiBul(file) & "." & dosyaUzantisi
@@ -14,7 +16,8 @@
                     prgGuncelle(file, rndNum)
                 Else
                     My.Computer.FileSystem.CopyFile(".\EXEnew\" & file, Application.StartupPath & "\" & file, overwrite:=True)
-                    txtNewFiles.Text += "Yeni Dosya Eklendi: " & file & vbCrLf
+                    EXEnewDosyaIndex = txtNewFiles.GetLineFromCharIndex(txtNewFiles.Text.Length) + 1
+                    txtNewFiles.Text += EXEnewDosyaIndex & ". Yeni Dosya Eklendi: " & file & vbCrLf
                 End If
                 EXEnewDosyaSayisi += 1
             Next
@@ -29,14 +32,17 @@
     Sub prgGuncelle(strPrgAdi, rnd)
         Try
             Dim exeOldFileName, currentFileName As String
-            Dim totalFileNum As Integer = 0
+            Dim EXEoldDosyaIndex As Integer = 1
             exeOldFileName = dosyaAdiBul(strPrgAdi) & "_" & gunHesapla() & "_" & rnd.ToString & "." & dosyaUzantisi
             My.Computer.FileSystem.RenameFile(strPrgAdi, exeOldFileName)
             My.Computer.FileSystem.MoveFile(Application.StartupPath & "\" & exeOldFileName, ".\EXEold\" & exeOldFileName)
             currentFileName = Application.StartupPath & "\" & strPrgAdi
             My.Computer.FileSystem.CopyFile(".\EXEnew\" & strPrgAdi, currentFileName, overwrite:=True)
 
-            txtOldFiles.Text += totalFileNum & ". Eski Dosya Çıkarıldı: " & exeOldFileName & vbCrLf
+            EXEoldDosyaIndex = txtOldFiles.GetLineFromCharIndex(txtOldFiles.Text.Length) + 1
+
+            txtOldFiles.Text += EXEoldDosyaIndex & ". Eski Dosya Çıkarıldı: " & exeOldFileName & vbCrLf
+
         Catch ex As Exception
             MessageBox.Show(ex.Message, "Hata")
         End Try
@@ -64,4 +70,5 @@
     Private Sub btnExit_Click(sender As Object, e As EventArgs) Handles btnExit.Click
         Close()
     End Sub
+
 End Class
