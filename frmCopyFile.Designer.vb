@@ -28,19 +28,21 @@ Partial Class frmCopyFile
         Me.btnExit = New System.Windows.Forms.Button()
         Me.txtOldFiles = New System.Windows.Forms.TextBox()
         Me.lblNewFiles = New System.Windows.Forms.Label()
+        Me.lblEklenen = New System.Windows.Forms.Label()
+        Me.lblCikarilan = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
         'txtNewFiles
         '
         Me.txtNewFiles.BackColor = System.Drawing.Color.Honeydew
         Me.txtNewFiles.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(162, Byte))
-        Me.txtNewFiles.Location = New System.Drawing.Point(12, 59)
+        Me.txtNewFiles.Location = New System.Drawing.Point(14, 63)
         Me.txtNewFiles.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.txtNewFiles.Multiline = True
         Me.txtNewFiles.Name = "txtNewFiles"
         Me.txtNewFiles.ReadOnly = True
-        Me.txtNewFiles.Size = New System.Drawing.Size(362, 232)
-        Me.txtNewFiles.TabIndex = 1
+        Me.txtNewFiles.Size = New System.Drawing.Size(400, 644)
+        Me.txtNewFiles.TabIndex = 2
         Me.txtNewFiles.TabStop = False
         '
         'lblResult
@@ -52,7 +54,7 @@ Partial Class frmCopyFile
         Me.lblResult.Location = New System.Drawing.Point(12, 13)
         Me.lblResult.Name = "lblResult"
         Me.lblResult.Size = New System.Drawing.Size(57, 16)
-        Me.lblResult.TabIndex = 2
+        Me.lblResult.TabIndex = 4
         Me.lblResult.Text = "Sonuç : "
         '
         'btnExit
@@ -61,11 +63,11 @@ Partial Class frmCopyFile
         Me.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.btnExit.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(162, Byte))
         Me.btnExit.ForeColor = System.Drawing.Color.White
-        Me.btnExit.Location = New System.Drawing.Point(289, 13)
+        Me.btnExit.Location = New System.Drawing.Point(733, 13)
         Me.btnExit.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.btnExit.Name = "btnExit"
         Me.btnExit.Size = New System.Drawing.Size(87, 42)
-        Me.btnExit.TabIndex = 3
+        Me.btnExit.TabIndex = 1
         Me.btnExit.Text = "ÇIKIŞ"
         Me.btnExit.UseVisualStyleBackColor = False
         '
@@ -73,13 +75,13 @@ Partial Class frmCopyFile
         '
         Me.txtOldFiles.BackColor = System.Drawing.Color.MistyRose
         Me.txtOldFiles.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(162, Byte))
-        Me.txtOldFiles.Location = New System.Drawing.Point(12, 299)
+        Me.txtOldFiles.Location = New System.Drawing.Point(420, 63)
         Me.txtOldFiles.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.txtOldFiles.Multiline = True
         Me.txtOldFiles.Name = "txtOldFiles"
         Me.txtOldFiles.ReadOnly = True
-        Me.txtOldFiles.Size = New System.Drawing.Size(362, 408)
-        Me.txtOldFiles.TabIndex = 4
+        Me.txtOldFiles.Size = New System.Drawing.Size(400, 644)
+        Me.txtOldFiles.TabIndex = 3
         Me.txtOldFiles.TabStop = False
         '
         'lblNewFiles
@@ -88,18 +90,44 @@ Partial Class frmCopyFile
         Me.lblNewFiles.BackColor = System.Drawing.Color.Navy
         Me.lblNewFiles.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(162, Byte))
         Me.lblNewFiles.ForeColor = System.Drawing.Color.White
-        Me.lblNewFiles.Location = New System.Drawing.Point(12, 39)
+        Me.lblNewFiles.Location = New System.Drawing.Point(417, 13)
         Me.lblNewFiles.Name = "lblNewFiles"
         Me.lblNewFiles.Size = New System.Drawing.Size(194, 16)
         Me.lblNewFiles.TabIndex = 5
         Me.lblNewFiles.Text = "Toplam EXEnew Dosya Sayısı : "
+        '
+        'lblEklenen
+        '
+        Me.lblEklenen.AutoSize = True
+        Me.lblEklenen.BackColor = System.Drawing.Color.Honeydew
+        Me.lblEklenen.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(162, Byte))
+        Me.lblEklenen.ForeColor = System.Drawing.Color.Black
+        Me.lblEklenen.Location = New System.Drawing.Point(163, 43)
+        Me.lblEklenen.Name = "lblEklenen"
+        Me.lblEklenen.Size = New System.Drawing.Size(69, 16)
+        Me.lblEklenen.TabIndex = 6
+        Me.lblEklenen.Text = "Eklenenler"
+        '
+        'lblCikarilan
+        '
+        Me.lblCikarilan.AutoSize = True
+        Me.lblCikarilan.BackColor = System.Drawing.Color.MistyRose
+        Me.lblCikarilan.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(162, Byte))
+        Me.lblCikarilan.ForeColor = System.Drawing.Color.Black
+        Me.lblCikarilan.Location = New System.Drawing.Point(578, 43)
+        Me.lblCikarilan.Name = "lblCikarilan"
+        Me.lblCikarilan.Size = New System.Drawing.Size(72, 16)
+        Me.lblCikarilan.TabIndex = 7
+        Me.lblCikarilan.Text = "Çıkarılanlar"
         '
         'frmCopyFile
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(388, 720)
+        Me.ClientSize = New System.Drawing.Size(836, 720)
+        Me.Controls.Add(Me.lblCikarilan)
+        Me.Controls.Add(Me.lblEklenen)
         Me.Controls.Add(Me.lblNewFiles)
         Me.Controls.Add(Me.txtOldFiles)
         Me.Controls.Add(Me.btnExit)
@@ -120,4 +148,6 @@ Partial Class frmCopyFile
     Friend WithEvents btnExit As Button
     Friend WithEvents txtOldFiles As TextBox
     Friend WithEvents lblNewFiles As Label
+    Friend WithEvents lblEklenen As Label
+    Friend WithEvents lblCikarilan As Label
 End Class
