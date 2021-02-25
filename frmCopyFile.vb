@@ -1,10 +1,7 @@
-﻿Imports Microsoft.VisualBasic.Strings
-'!-- MEGA TEST projesi ver:1.2 ------------------
-
-Public Class frmCopyFile
+﻿Public Class frmCopyFile
     Dim rndNum As Integer = 0
     Dim dosyaUzantisi As String = String.Empty
-    Dim toplamDosyaSayisi As Integer = 0
+    Dim EXEnewDosyaSayisi As Integer = 0
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles Me.Load
         Dim files() As String = IO.Directory.GetFiles(".\EXEnew\")  'Dosyaların adları alınır
@@ -19,29 +16,27 @@ Public Class frmCopyFile
                     My.Computer.FileSystem.CopyFile(".\EXEnew\" & file, Application.StartupPath & "\" & file, overwrite:=True)
                     txtNewFiles.Text += "Yeni Dosya Eklendi: " & file & vbCrLf
                 End If
-                toplamDosyaSayisi += 1
+                EXEnewDosyaSayisi += 1
             Next
             lblResult.Text &= "İşlem Başarılı"
-            lblNewFiles.Text &= toplamDosyaSayisi
+            lblNewFiles.Text &= EXEnewDosyaSayisi
         Catch ex As Exception
             MessageBox.Show(ex.Message, "Hata")
         End Try
-
-
 
     End Sub
 
     Sub prgGuncelle(strPrgAdi, rnd)
         Try
             Dim exeOldFileName, currentFileName As String
-
+            Dim totalFileNum As Integer = 0
             exeOldFileName = dosyaAdiBul(strPrgAdi) & "_" & gunHesapla() & "_" & rnd.ToString & "." & dosyaUzantisi
             My.Computer.FileSystem.RenameFile(strPrgAdi, exeOldFileName)
             My.Computer.FileSystem.MoveFile(Application.StartupPath & "\" & exeOldFileName, ".\EXEold\" & exeOldFileName)
             currentFileName = Application.StartupPath & "\" & strPrgAdi
             My.Computer.FileSystem.CopyFile(".\EXEnew\" & strPrgAdi, currentFileName, overwrite:=True)
 
-            txtOldFiles.Text += "Eski Dosya Çıkarıldı: " & exeOldFileName & vbCrLf
+            txtOldFiles.Text += totalFileNum & ". Eski Dosya Çıkarıldı: " & exeOldFileName & vbCrLf
         Catch ex As Exception
             MessageBox.Show(ex.Message, "Hata")
         End Try
@@ -54,8 +49,7 @@ Public Class frmCopyFile
 
         If dosyaAdi.Contains("\EXE") Then
             dosyaIlkParca = Split(dosyaAdi, "\")
-            dosyaSonParca = Split(dosyaIlkParca(2), ".")
-            dosyaAdi = dosyaSonParca(0)
+            dosyaAdi = Strings.Left(dosyaIlkParca(2), dosyaIlkParca(2).Length - 4)  'deneme.txt -> deneme, dosyaIlkParca(2)'da tutuluyor
         Else
             dosyaAdi = Strings.Left(dosyaAdi, InStr(dosyaAdi, ".") - 1)
         End If

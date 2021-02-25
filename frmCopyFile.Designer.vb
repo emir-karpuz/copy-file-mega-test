@@ -38,7 +38,7 @@ Partial Class frmCopyFile
         Me.txtNewFiles.Multiline = True
         Me.txtNewFiles.Name = "txtNewFiles"
         Me.txtNewFiles.ReadOnly = True
-        Me.txtNewFiles.Size = New System.Drawing.Size(362, 174)
+        Me.txtNewFiles.Size = New System.Drawing.Size(362, 232)
         Me.txtNewFiles.TabIndex = 1
         Me.txtNewFiles.TabStop = False
         '
@@ -72,12 +72,12 @@ Partial Class frmCopyFile
         '
         Me.txtOldFiles.BackColor = System.Drawing.Color.MistyRose
         Me.txtOldFiles.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(162, Byte))
-        Me.txtOldFiles.Location = New System.Drawing.Point(12, 241)
+        Me.txtOldFiles.Location = New System.Drawing.Point(12, 299)
         Me.txtOldFiles.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.txtOldFiles.Multiline = True
         Me.txtOldFiles.Name = "txtOldFiles"
         Me.txtOldFiles.ReadOnly = True
-        Me.txtOldFiles.Size = New System.Drawing.Size(362, 192)
+        Me.txtOldFiles.Size = New System.Drawing.Size(362, 408)
         Me.txtOldFiles.TabIndex = 4
         Me.txtOldFiles.TabStop = False
         '
@@ -98,7 +98,7 @@ Partial Class frmCopyFile
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(388, 440)
+        Me.ClientSize = New System.Drawing.Size(388, 720)
         Me.Controls.Add(Me.lblNewFiles)
         Me.Controls.Add(Me.txtOldFiles)
         Me.Controls.Add(Me.btnExit)
